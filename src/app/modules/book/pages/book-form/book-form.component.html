@@ -1,0 +1,63 @@
+<div class="container">
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Enter your name" formControlName="name" />
+      </mat-form-field>
+      <div
+        *ngIf="bookForm.get('name')?.invalid && bookForm.get('name')?.dirty"
+        class="hint"
+      >
+        <mat-error *ngIf=" bookForm.get('name')?.errors?.['required']">
+          Name is required
+        </mat-error>
+      </div>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Authors</mat-label>
+        <textarea
+          matInput
+          placeholder="Jane Austen, George R. R. Martin"
+          [(ngModel)]="authors"
+          [ngModelOptions]="{ standalone: true }"
+        ></textarea>
+      </mat-form-field>
+      <div
+        *ngIf="
+          bookForm.get('authors')?.invalid && bookForm.get('authors')?.dirty
+        "
+        class="hint"
+      >
+        <mat-error *ngIf=" bookForm.get('authors')?.errors?.['required']">
+          Name is required
+        </mat-error>
+      </div>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>ISBN</mat-label>
+        <input matInput placeholder="Enter book ISBN" formControlName="isbn" />
+      </mat-form-field>
+      <div
+        *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.dirty"
+        class="hint"
+      >
+        <mat-error *ngIf=" bookForm.get('isbn')?.errors?.['required']">
+          ISBN is required
+        </mat-error>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" type="submit">Edit</button>
+  </form>
+
+  <div class="details" *ngIf="isDisplay">
+    <div>Name: {{ name }}</div>
+    <span>Authors:</span>
+    <ng-container *ngFor="let author of authorsSplit">
+      <div>{{ author }}</div>
+    </ng-container>
+    <div>ISBN: {{ isbn }}</div>
+  </div>
+</div>

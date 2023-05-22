@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem 2rem;
+}
+
+form {
+  width: 100%;
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.submit {
+  margin-top: 1rem;
+  padding: 0.875rem;
+  color: #fff;
+  background-color: #009879;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  transition: background-color 300ms ease;
+}
+
+.submit:hover,
+.submit:focus {
+  background-color: #05745d;
+}
