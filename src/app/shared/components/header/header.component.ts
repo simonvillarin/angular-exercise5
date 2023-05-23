@@ -10,6 +10,8 @@ import { BookService } from 'src/app/modules/book/services/book.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  books: Book[] = this.bookService.getBooks();
+
   constructor(
     private router: Router,
     private blogService: BlogService,

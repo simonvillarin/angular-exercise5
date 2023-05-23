@@ -11,10 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { BookListComponent } from './pages/book-list/book-list.component';
 import { BookItemComponent } from './components/book-item/book-item.component';
 import { MatIconModule } from '@angular/material/icon';
-import { BookDisplayComponent } from './pages/book-display/book-display.component';
 
 @NgModule({
-  declarations: [BookFormComponent, BookListComponent, BookItemComponent, BookDisplayComponent],
+  declarations: [BookFormComponent, BookListComponent, BookItemComponent],
   imports: [
     BookRoutingModule,
     CommonModule,

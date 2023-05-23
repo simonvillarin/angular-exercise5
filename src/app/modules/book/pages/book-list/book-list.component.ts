@@ -14,7 +14,7 @@ export class BookListComponent {
   constructor(private bookService: BookService, private router: Router) {}
 
   edit = (id: number) => {
-    this.router.navigate([`book/${id}`]);
+    this.router.navigate([`book/form`], { queryParams: { id: id } });
   };
 
   delete = (id: number) => {

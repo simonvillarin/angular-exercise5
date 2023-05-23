@@ -11,10 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { BlogListComponent } from './pages/blog-list/blog-list.component';
 import { BlogItemComponent } from './components/blog-item/blog-item.component';
 import { MatIconModule } from '@angular/material/icon';
-import { BlogDisplayComponent } from './pages/blog-display/blog-display.component';
 
 @NgModule({
-  declarations: [BlogFormComponent, BlogListComponent, BlogItemComponent, BlogDisplayComponent],
+  declarations: [BlogFormComponent, BlogListComponent, BlogItemComponent],
   imports: [
     CommonModule,
     BlogRoutingModule,

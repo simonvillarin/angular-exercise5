@@ -14,7 +14,7 @@ export class BlogListComponent {
   constructor(private blogService: BlogService, private router: Router) {}
 
   edit = (id: number) => {
-    this.router.navigate([`/blog/${id}`]);
+    this.router.navigate([`blog/form`], { queryParams: { id: id } });
   };
 
   delete = (id: number) => {
