@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Title:</h2>
+  <span>{{ title }}</span>
+  <h2>Authors:</h2>
+  <ng-container *ngFor="let author of authors">
+    <span>{{ author }}</span>
+  </ng-container>
+  <h2>ISBN:</h2>
+  <span>{{ isbn }}</span>
+</div>

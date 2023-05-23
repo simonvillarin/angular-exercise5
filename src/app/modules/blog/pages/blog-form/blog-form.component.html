@@ -2,15 +2,15 @@
   <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
     <div>
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Enter your name" formControlName="name" />
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Enter  title" formControlName="title" />
       </mat-form-field>
       <div
-        *ngIf="blogForm.get('name')?.invalid && blogForm.get('name')?.dirty"
+        *ngIf="blogForm.get('title')?.invalid && blogForm.get('title')?.dirty"
         class="hint"
       >
-        <mat-error *ngIf="blogForm.get('name')?.errors?.['required']">
-          Name is required
+        <mat-error *ngIf="blogForm.get('title')?.errors?.['required']">
+          Title is required
         </mat-error>
       </div>
     </div>
@@ -70,16 +70,6 @@
         </mat-error>
       </div>
     </div>
-    <button mat-raised-button color="primary" type="submit">Edit</button>
+    <button color="primary" type="submit">Submit</button>
   </form>
-
-  <div class="details" *ngIf="isDisplay">
-    <div>Name: {{ name }}</div>
-    <div>Description: {{ description }}</div>
-    <div>Author: {{ author }}</div>
-    <span>Comments:</span>
-    <ng-container *ngFor="let comment of commentsSplit">
-      <div>{{ comment }}</div>
-    </ng-container>
-  </div>
 </div>

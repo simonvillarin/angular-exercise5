@@ -1,0 +1,21 @@
+<div class="card" *ngIf="book">
+  <div class="card-actions">
+    <div class="card-icon"><mat-icon>auto_stories</mat-icon></div>
+    <div class="card-btn">
+      <button class="btn-edit" (click)="edit(book.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button class="btn-delete" (click)="delete(book.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="card-title">{{ book.title }}</div>
+  <div class="card-authors">
+    <ng-container *ngFor="let author of book.authors; let last = last"
+      ><span>{{ author }}{{ last ? "" : "," }}</span
+      >&nbsp;</ng-container
+    >
+  </div>
+  <div class="card-isbn">ISBN: {{ book.isbn }}</div>
+</div>

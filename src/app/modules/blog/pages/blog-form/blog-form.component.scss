@@ -26,7 +26,16 @@ mat-form-field {
 
 button {
   width: 100%;
-  padding: 1.5rem;
+  padding: 1rem;
+  background-color: #009879;
+  border-radius: 0.25rem;
+  color: #fff;
+  transition: background-color 300ms ease;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #147965;
 }
 
 .authors {

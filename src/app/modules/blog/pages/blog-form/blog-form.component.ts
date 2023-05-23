@@ -6,6 +6,8 @@ import {
   FormArray,
   FormControl,
 } from '@angular/forms';
+import { BlogService } from '../../services/blog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-form',
@@ -15,16 +17,15 @@ import {
 export class BlogFormComponent {
   blogForm: FormGroup;
   commentsArray: FormArray;
-  isDisplay: boolean = false;
   comments: string = '';
-  name: string = '';
-  description: string = '';
-  author: string = '';
-  commentsSplit: string[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private blogService: BlogService,
+    private router: Router
+  ) {
     this.blogForm = fb.group({
-      name: ['', [Validators.required]],
+      title: ['', [Validators.required]],
       description: ['', [Validators.required]],
       author: ['', [Validators.required]],
       comments: this.fb.array([]),
@@ -33,18 +34,15 @@ export class BlogFormComponent {
   }
 
   onSubmit = () => {
-    console.log(this.blogForm.value);
     if (this.blogForm.valid) {
-      this.commentsSplit = this.comments.split(',');
-      this.commentsSplit.map((comment) =>
+      const commentsSplit = this.comments.split(',');
+      commentsSplit.map((comment) =>
         this.commentsArray.push(new FormControl(comment))
       );
-      this.isDisplay = true;
-      this.name = this.blogForm.get('name')?.value;
-      this.description = this.blogForm.get('description')?.value;
-      this.author = this.blogForm.get('author')?.value;
+      this.blogService.blogs.push(this.blogForm.value);
       this.comments = '';
       this.blogForm.reset();
+      this.router.navigate(['/blog']);
     }
   };
 }

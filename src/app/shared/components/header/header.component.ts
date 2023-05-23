@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { BlogService } from 'src/app/modules/blog/services/blog.service';
+import { Book } from 'src/app/modules/book/models/book';
+import { BookService } from 'src/app/modules/book/services/book.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +10,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private blogService: BlogService,
+    private bookService: BookService
+  ) {}
 
   add = () => {
-    this.router.navigate([`${this.router.url}/form`]);
+    if (this.router.url != '/profile') {
+      this.router.navigate([`${this.router.url}/form`]);
+    }
   };
 
   deleteAll = () => {
-    this.router.navigate([`${this.router.url}/form`]);
+    if (this.router.url == '/blog') {
+      this.blogService.blogs = [];
+    }
+    if (this.router.url == '/book') {
+      this.bookService.books = [];
+    }
   };
 }

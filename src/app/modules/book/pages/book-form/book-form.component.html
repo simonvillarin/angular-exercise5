@@ -3,14 +3,14 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Enter your name" formControlName="name" />
+        <input matInput placeholder="Enter title" formControlName="title" />
       </mat-form-field>
       <div
-        *ngIf="bookForm.get('name')?.invalid && bookForm.get('name')?.dirty"
+        *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.dirty"
         class="hint"
       >
-        <mat-error *ngIf=" bookForm.get('name')?.errors?.['required']">
-          Name is required
+        <mat-error *ngIf=" bookForm.get('title')?.errors?.['required']">
+          Title is required
         </mat-error>
       </div>
     </div>
@@ -49,15 +49,6 @@
         </mat-error>
       </div>
     </div>
-    <button mat-raised-button color="primary" type="submit">Edit</button>
+    <button color="primary" type="submit">Submit</button>
   </form>
-
-  <div class="details" *ngIf="isDisplay">
-    <div>Name: {{ name }}</div>
-    <span>Authors:</span>
-    <ng-container *ngFor="let author of authorsSplit">
-      <div>{{ author }}</div>
-    </ng-container>
-    <div>ISBN: {{ isbn }}</div>
-  </div>
 </div>

@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Title:</h2>
+  <span>{{ title }}</span>
+  <h2>Description:</h2>
+  <span>{{ description }}</span>
+  <h2>Author:</h2>
+  <span>{{ author }}</span>
+  <h2>Comments:</h2>
+  <ng-container *ngFor="let comment of comments">
+    <span>{{ comment }}</span>
+  </ng-container>
+</div>

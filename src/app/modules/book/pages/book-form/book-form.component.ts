@@ -6,6 +6,8 @@ import {
   FormArray,
   FormControl,
 } from '@angular/forms';
+import { BookService } from '../../services/book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-form',
@@ -15,15 +17,15 @@ import {
 export class BookFormComponent {
   bookForm: FormGroup;
   authorsArray: FormArray;
-  isDisplay: boolean = false;
   authors: string = '';
-  name: string = '';
-  isbn: string = '';
-  authorsSplit: string[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private bookService: BookService,
+    private router: Router
+  ) {
     this.bookForm = fb.group({
-      name: ['', [Validators.required]],
+      title: ['', [Validators.required]],
       authors: this.fb.array([]),
       isbn: ['', [Validators.required]],
     });
@@ -32,15 +34,14 @@ export class BookFormComponent {
 
   onSubmit = () => {
     if (this.bookForm.valid) {
-      this.authorsSplit = this.authors.split(',');
-      this.authorsSplit.map((author) =>
+      const authorsSplit = this.authors.split(',');
+      authorsSplit.map((author) =>
         this.authorsArray.push(new FormControl(author))
       );
-      this.isDisplay = true;
-      this.name = this.bookForm.get('name')?.value;
-      this.isbn = this.bookForm.get('isbn')?.value;
       this.authors = '';
+      this.bookService.books.push(this.bookForm.value);
       this.bookForm.reset();
+      this.router.navigate(['/blog']);
     }
   };
 }
