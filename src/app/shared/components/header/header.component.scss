@@ -24,7 +24,7 @@ mat-toolbar {
 }
 
 .nav-item::after,
-.router-link-active::after {
+router-link-active::after {
   content: "";
   position: absolute;
   bottom: -0.25rem;
