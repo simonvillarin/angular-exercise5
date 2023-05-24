@@ -1,16 +1,27 @@
-<nav>
+<mat-toolbar>
   <div class="container">
-    <ul>
-      <li>
-        <a routerLink="blog" routerLinkActive="router-link-active">Blog</a>
+    <span>Angular - Exercise 5</span>
+    <ul class="nav-list">
+      <li
+        class="nav-item"
+        routerLink="blog"
+        routerLinkActive="router-link-active"
+      >
+        Blog List
       </li>
-      <li>
-        <a routerLink="book" routerLinkActive="router-link-active">Book</a>
+      <li
+        class="nav-item"
+        routerLink="book"
+        routerLinkActive="router-link-active"
+      >
+        Book List
       </li>
-      <li>
-        <a routerLink="profile" routerLinkActive="router-link-active"
-          >Profile</a
-        >
+      <li
+        class="nav-item"
+        routerLink="profile"
+        routerLinkActive="router-link-active"
+      >
+        Profile Form
       </li>
     </ul>
     <app-command-bar
@@ -18,4 +29,4 @@
       (deleteAllEmitter)="deleteAll()"
     ></app-command-bar>
   </div>
-</nav>
+</mat-toolbar>

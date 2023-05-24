@@ -8,16 +8,14 @@ import { Book } from '../../models/book';
 })
 export class BookItemComponent {
   @Input('book') book: Book | undefined;
-  @Output() editEmitter: EventEmitter<number> = new EventEmitter<number>();
-  @Output() deleteEmitter: EventEmitter<number> = new EventEmitter<number>();
+  @Output() editEmitter: EventEmitter<Book> = new EventEmitter();
+  @Output() deleteEmitter: EventEmitter<Book> = new EventEmitter();
 
-  edit = (id: number) => {
-    this.editEmitter.emit(this.book?.id);
-    console.log(`Edit book id: ${id}`);
+  edit = (book: Book) => {
+    this.editEmitter.emit(book);
   };
 
-  delete = (id: number) => {
-    this.deleteEmitter.emit(this.book?.id);
-    console.log(`Delete book id: ${id}`);
+  delete = (book: Book) => {
+    this.deleteEmitter.emit(book);
   };
 }

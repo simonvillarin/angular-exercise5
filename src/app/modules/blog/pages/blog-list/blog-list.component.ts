@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Blog } from '../../models/blog';
 import { BlogService } from '../../services/blog.service';
 import { Router } from '@angular/router';
@@ -8,18 +8,35 @@ import { Router } from '@angular/router';
   templateUrl: './blog-list.component.html',
   styleUrls: ['./blog-list.component.scss'],
 })
-export class BlogListComponent {
-  blogs: Blog[] = this.blogService.blogs;
+export class BlogListComponent implements OnInit {
+  blogs: Blog[] = [];
 
   constructor(private blogService: BlogService, private router: Router) {}
 
-  edit = (id: number) => {
-    this.router.navigate([`blog/form`], { queryParams: { id: id } });
+  ngOnInit(): void {
+    this.getBlogs();
+  }
+
+  getBlogs = () => {
+    this.blogService.getBlogs().subscribe((data) => {
+      this.blogs = data;
+    });
   };
 
-  delete = (id: number) => {
-    const filterBlogs = this.blogService.blogs.filter((blog) => blog.id != id);
-    this.blogService.blogs = filterBlogs;
-    this.blogs = filterBlogs;
+  editBlog = (blog: Blog) => {
+    this.router.navigate([`blog/form`], {
+      queryParams: {
+        id: blog.id,
+        title: blog.title,
+        description: blog.description,
+        author: blog.author,
+        comments: blog.comments,
+      },
+    });
+  };
+
+  deleteBlog = (blog: Blog) => {
+    this.blogService.deleteBlog(blog.id).subscribe(() => {});
+    this.blogs = this.blogs.filter((b) => b.id != blog.id);
   };
 }

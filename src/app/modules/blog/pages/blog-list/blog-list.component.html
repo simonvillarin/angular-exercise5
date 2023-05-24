@@ -1,9 +1,11 @@
+<app-header></app-header>
+
 <div class="container">
   <div *ngFor="let blog of blogs">
     <app-blog-item
       [blog]="blog"
-      (editEmitter)="edit($event)"
-      (deleteEmitter)="delete($event)"
+      (editEmitter)="editBlog($event)"
+      (deleteEmitter)="deleteBlog($event)"
     ></app-blog-item>
   </div>
 </div>

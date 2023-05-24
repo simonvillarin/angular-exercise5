@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="container">
   <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
     <div>
@@ -31,7 +33,7 @@
         class="hint"
       >
         <mat-error *ngIf="blogForm.get('description')?.errors?.['required']">
-          ISBN is required
+          Description is required
         </mat-error>
       </div>
     </div>
@@ -45,31 +47,36 @@
         class="hint"
       >
         <mat-error *ngIf="blogForm.get('author')?.errors?.['required']">
-          ISBN is required
+          Author is required
         </mat-error>
       </div>
     </div>
     <div>
-      <mat-form-field appearance="outline">
-        <mat-label>Comments</mat-label>
-        <textarea
-          matInput
-          placeholder="I love the blog, Keep it up!"
-          [(ngModel)]="comments"
-          [ngModelOptions]="{ standalone: true }"
-        ></textarea>
-      </mat-form-field>
-      <div
-        *ngIf="
-          blogForm.get('authors')?.invalid && blogForm.get('authors')?.dirty
-        "
-        class="hint"
-      >
-        <mat-error *ngIf="blogForm.get('authors')?.errors?.['required']">
-          Name is required
-        </mat-error>
-      </div>
+      <ng-container formArrayName="comments">
+        <div
+          *ngFor="let _ of commentsArray.controls; index as i"
+          class="form-group"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Comment</mat-label>
+            <input matInput placeholder="Enter comment" [formControlName]="i" />
+          </mat-form-field>
+          <div>
+            <button
+              mat-raised-button
+              color="warn"
+              class="delete"
+              (click)="deleteBlog(i)"
+            >
+              Delete
+            </button>
+            <button mat-raised-button class="add" (click)="addBlog()">
+              Add
+            </button>
+          </div>
+        </div>
+      </ng-container>
     </div>
-    <button color="primary" type="submit">Submit</button>
+    <button mat-raised-button class="submit">Submit</button>
   </form>
 </div>

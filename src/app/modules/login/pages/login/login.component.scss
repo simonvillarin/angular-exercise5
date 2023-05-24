@@ -1,11 +1,15 @@
 .container {
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  padding-top: 5rem;
+  gap: 1.5rem;
+}
+
+h2 {
+  font-size: 2.25rem;
 }
 
 form {
@@ -13,7 +17,7 @@ form {
   max-width: 500px;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 mat-form-field {
@@ -22,6 +26,11 @@ mat-form-field {
 
 .hint {
   margin-bottom: 0;
+}
+
+.form-group {
+  display: flex;
+  gap: 1rem;
 }
 
 .authors {
@@ -34,11 +43,6 @@ mat-form-field {
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
-  gap: 1rem;
-}
-
-.form-group {
-  display: flex;
   gap: 1rem;
 }
 
@@ -58,7 +62,18 @@ mat-form-field {
 }
 
 .submit {
-  padding: 1.5rem;
+  padding: 1rem;
+  background-color: #009879;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 300ms ease;
+}
+
+.submit:hover {
+  background-color: #1e7462;
+}
+
+button {
   background-color: #009879;
   color: #fff;
 }

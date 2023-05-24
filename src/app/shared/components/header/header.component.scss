@@ -1,37 +1,41 @@
-nav {
+mat-toolbar {
+  background-color: #009879;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  background-color: #333;
 }
 
-nav > .container {
-  width: 100%;
+.nav-list {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-ul {
-  list-style-type: none;
-  display: flex;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+.nav-item {
+  position: relative;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-a:hover {
-  background-color: green;
+.nav-item::after,
+.router-link-active::after {
+  content: "";
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 100vmax;
+  transition: width 300ms ease-in;
 }
 
-.router-link-active {
-  background-color: green;
+.nav-item:hover::after {
+  width: 100%;
 }

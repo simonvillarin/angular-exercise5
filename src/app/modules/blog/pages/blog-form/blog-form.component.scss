@@ -24,18 +24,9 @@ mat-form-field {
   margin-bottom: 0;
 }
 
-button {
-  width: 100%;
-  padding: 1rem;
-  background-color: #009879;
-  border-radius: 0.25rem;
-  color: #fff;
-  transition: background-color 300ms ease;
-  font-size: 1rem;
-}
-
-button:hover {
-  background-color: #147965;
+.form-group {
+  display: flex;
+  gap: 1rem;
 }
 
 .authors {
@@ -49,4 +40,25 @@ button:hover {
   flex-direction: column;
   font-size: 1.25rem;
   gap: 1rem;
+}
+
+.form-group > div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.delete,
+.add {
+  padding: 1.75rem 0;
+  color: #fff;
+}
+
+.add {
+  background-color: dodgerblue;
+}
+
+.submit {
+  padding: 1.5rem;
+  background-color: #009879;
+  color: #fff;
 }

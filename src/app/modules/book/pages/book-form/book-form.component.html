@@ -1,54 +1,61 @@
+<app-header></app-header>
+
 <div class="container">
   <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
     <div>
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Enter title" formControlName="title" />
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Enter  title" formControlName="title" />
       </mat-form-field>
       <div
         *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.dirty"
         class="hint"
       >
-        <mat-error *ngIf=" bookForm.get('title')?.errors?.['required']">
+        <mat-error *ngIf="bookForm.get('title')?.errors?.['required']">
           Title is required
         </mat-error>
       </div>
     </div>
     <div>
-      <mat-form-field appearance="outline">
-        <mat-label>Authors</mat-label>
-        <textarea
-          matInput
-          placeholder="Jane Austen, George R. R. Martin"
-          [(ngModel)]="authors"
-          [ngModelOptions]="{ standalone: true }"
-        ></textarea>
-      </mat-form-field>
-      <div
-        *ngIf="
-          bookForm.get('authors')?.invalid && bookForm.get('authors')?.dirty
-        "
-        class="hint"
-      >
-        <mat-error *ngIf=" bookForm.get('authors')?.errors?.['required']">
-          Name is required
-        </mat-error>
-      </div>
+      <ng-container formArrayName="authors">
+        <div
+          *ngFor="let _ of authorsArray.controls; index as i"
+          class="form-group"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Author</mat-label>
+            <input matInput placeholder="Enter author" [formControlName]="i" />
+          </mat-form-field>
+          <div>
+            <button
+              mat-raised-button
+              color="warn"
+              class="delete"
+              (click)="deleteBook(i)"
+            >
+              Delete
+            </button>
+            <button mat-raised-button class="add" (click)="addBook()">
+              Add
+            </button>
+          </div>
+        </div>
+      </ng-container>
     </div>
     <div>
       <mat-form-field appearance="outline">
-        <mat-label>ISBN</mat-label>
-        <input matInput placeholder="Enter book ISBN" formControlName="isbn" />
+        <mat-label>Author</mat-label>
+        <input matInput placeholder="Enter author" formControlName="isbn" />
       </mat-form-field>
       <div
         *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.dirty"
         class="hint"
       >
-        <mat-error *ngIf=" bookForm.get('isbn')?.errors?.['required']">
+        <mat-error *ngIf="bookForm.get('isbn')?.errors?.['required']">
           ISBN is required
         </mat-error>
       </div>
     </div>
-    <button color="primary" type="submit">Submit</button>
+    <button mat-raised-button class="submit">Submit</button>
   </form>
 </div>

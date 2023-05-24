@@ -16,66 +16,48 @@ import { Blog } from '../../models/blog';
   styleUrls: ['./blog-form.component.scss'],
 })
 export class BlogFormComponent {
-  blogs: Blog[] = this.blogService.getBlogs();
   blogForm: FormGroup;
   commentsArray: FormArray;
-  comments: string = '';
-  id: number = 0;
+  id: number = this.route.snapshot.queryParams['id'] || 0;
 
   constructor(
     private fb: FormBuilder,
     private blogService: BlogService,
-    private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
-    this.id = this.route.snapshot.queryParams['id'] || -1;
-    let blog = this.blogService.blogs.filter((blog) => blog.id == this.id);
+    let title = this.route.snapshot.queryParams['title'];
+    let description = route.snapshot.queryParams['description'];
+    let author = route.snapshot.queryParams['author'];
+    let comments = route.snapshot.queryParams['comments'];
 
-    if (this.id != -1) {
-      blog[0].comments.map((comment, index) => {
-        if (blog[0].comments.length == index + 1) {
-          this.comments += comment;
-        } else {
-          this.comments += comment + ', ';
-        }
-      });
-    }
-
-    this.blogForm = fb.group({
-      id: [this.id != -1 ? blog[0].id : this.blogService.blogs.length + 1],
-      title: [this.id != -1 ? blog[0].title : '', [Validators.required]],
-      description: [
-        this.id != -1 ? blog[0].description : '',
-        [Validators.required],
-      ],
-      author: [this.id != -1 ? blog[0].author : '', [Validators.required]],
-      comments: fb.array([]),
+    this.blogForm = this.fb.group({
+      title: [title || '', [Validators.required]],
+      description: [description || '', [Validators.required]],
+      author: [author || '', [Validators.required]],
+      comments: fb.array(comments || [new FormControl('')]),
     });
     this.commentsArray = this.blogForm.controls['comments'] as FormArray;
   }
 
+  deleteBlog = (i: number) => {
+    this.commentsArray.removeAt(i);
+  };
+
+  addBlog = () => {
+    this.commentsArray.push(new FormControl(''));
+  };
+
   onSubmit = () => {
     if (this.blogForm.valid) {
-      const commentsSplit = this.comments.split(',');
-      commentsSplit.map((comment) =>
-        this.commentsArray.push(new FormControl(comment))
-      );
-      if (this.id == -1) {
-        this.blogService.blogs.push(this.blogForm.value);
+      if (this.id == 0) {
+        this.blogService.createBlog(this.blogForm.value).subscribe(() => {});
       } else {
-        const filterBlogs = this.blogService.blogs.filter(
-          (blog) => blog.id == this.id
-        );
-        const index = this.blogService.blogs.indexOf(filterBlogs[0]);
-        this.blogs[index].title = this.blogForm.get('title')?.value;
-        this.blogs[index].description = this.blogForm.get('description')?.value;
-        this.blogs[index].author = this.blogForm.get('author')?.value;
-        this.blogs[index].comments = this.blogForm.get('comments')?.value;
-        this.blogService.blogs = this.blogs;
+        this.blogService
+          .updateBlog(this.blogForm.value, this.id)
+          .subscribe(() => {});
       }
-      this.comments = '';
-      this.blogForm.reset();
-      this.router.navigate(['/blog']);
+      this.router.navigate(['blog']);
     }
   };
 }

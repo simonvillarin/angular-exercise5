@@ -21,6 +21,7 @@ export class ProfileFormComponent {
   onSubmit = () => {
     if (this.profileForm.valid) {
       console.log(this.profileForm.value);
+      this.profileForm.reset();
     }
   };
 }

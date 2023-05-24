@@ -1,0 +1,117 @@
+{
+  "blogs": [
+    {
+      "title": "Exploring the Wonders of Nature",
+      "description": "A blog dedicated to discovering the beauty and mysteries of the natural world.",
+      "author": "Sarah Thompson",
+      "comments": [
+        "Great article!",
+        "I learned so much from this. Thanks for sharing!"
+      ],
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "Tips for a Balanced Lifestyle",
+      "description": "Learn how to maintain a healthy lifestyle with practical tips and advice.",
+      "author": "John Miller",
+      "comments": [
+        "This is really helpful!",
+        "I've tried some of these tips and they work wonders."
+      ]
+    },
+    {
+      "id": 3,
+      "title": "The Art of Photography",
+      "description": "Discover the art and technique behind capturing stunning photographs.",
+      "author": "Emily Carter",
+      "comments": [
+        "Your photos are amazing!",
+        "Could you share some editing tips too?"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Adventures Around the Globe",
+      "description": "Join me as I share my travel experiences and inspire others to explore the world.",
+      "author": "David Anderson",
+      "comments": [
+        "I love reading about your adventures!",
+        "This makes me want to book a trip right now."
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Latest Gadgets and Innovations",
+      "description": "Stay updated on the latest technological advancements and gadget reviews.",
+      "author": "Alex Johnson",
+      "comments": [
+        "Great review!",
+        "I'm considering buying this product. Is it worth the price?"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "The Importance of Reading",
+      "description": "In this blog post, we explore the benefits and significance of reading books.",
+      "author": "Jane Doe",
+      "comments": [
+        "Great article! I couldn't agree more.",
+        "Thanks for sharing your insights on this topic!"
+      ]
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "The Nightingale",
+      "authors": [
+        "Kristin Hannah",
+        "Megan Abbott"
+      ],
+      "isbn": "9780312577223"
+    },
+    {
+      "title": "The Da Vinci Code",
+      "authors": [
+        "Dan Brown"
+      ],
+      "isbn": "9780307474278",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "title": "American Gods",
+      "authors": [
+        "Neil Gaiman",
+        "Terry Pratchett"
+      ],
+      "isbn": "9780380789030"
+    },
+    {
+      "id": 4,
+      "title": "To Kill a Mockingbird",
+      "authors": [
+        "Harper Lee"
+      ],
+      "isbn": "9780060935467"
+    },
+    {
+      "id": 5,
+      "title": "The Help",
+      "authors": [
+        "Kathryn Stockett",
+        "Tate Taylor"
+      ],
+      "isbn": "9780425232200"
+    },
+    {
+      "id": 6,
+      "title": "The Great Gatsby",
+      "authors": [
+        "F. Scott Fitzgerald"
+      ],
+      "isbn": "9780743273565"
+    }
+  ]
+}

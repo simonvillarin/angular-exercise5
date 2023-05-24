@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { BlogListComponent } from './pages/blog-list/blog-list.component';
 import { BlogItemComponent } from './components/blog-item/blog-item.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [BlogFormComponent, BlogListComponent, BlogItemComponent],
@@ -24,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     FormsModule,
     MatIconModule,
+    SharedModule,
   ],
 })
 export class BlogModule {}

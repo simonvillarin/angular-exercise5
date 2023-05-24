@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
 import { BookService } from '../../services/book.service';
 import { Router } from '@angular/router';
@@ -8,18 +8,32 @@ import { Router } from '@angular/router';
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
 })
-export class BookListComponent {
-  books: Book[] = this.bookService.getBooks();
+export class BookListComponent implements OnInit {
+  books: Book[] = [];
 
   constructor(private bookService: BookService, private router: Router) {}
 
-  edit = (id: number) => {
-    this.router.navigate([`book/form`], { queryParams: { id: id } });
+  ngOnInit(): void {
+    this.getBooks();
+  }
+
+  getBooks = () => {
+    this.bookService.getBooks().subscribe((data) => (this.books = data));
   };
 
-  delete = (id: number) => {
-    const filterBooks = this.bookService.books.filter((book) => book.id != id);
-    this.bookService.books = filterBooks;
-    this.books = filterBooks;
+  edit = (book: Book) => {
+    this.router.navigate([`book/form`], {
+      queryParams: {
+        id: book.id,
+        title: book.title,
+        authors: book.authors,
+        isbn: book.isbn,
+      },
+    });
+  };
+
+  delete = (book: Book) => {
+    this.bookService.deleteBook(book.id).subscribe(() => {});
+    this.books = this.books.filter((b) => b.id != book.id);
   };
 }
