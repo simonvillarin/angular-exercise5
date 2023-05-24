@@ -38,6 +38,16 @@ const routes: Routes = [
       import('./modules/profile/profile.module').then((m) => m.ProfileModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: '**',
+    redirectTo: 'error',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/error/error.module').then((m) => m.ErrorModule),
+  },
 ];
 
 @NgModule({

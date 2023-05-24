@@ -1,0 +1,25 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  background-color: #009879;
+  color: #fff;
+  transition: background-color 300ms ease;
+}
+
+button:hover {
+  background-color: #1e7966;
+}
