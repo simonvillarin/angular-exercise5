@@ -63,6 +63,7 @@
           </mat-form-field>
           <div>
             <button
+              type="button"
               mat-raised-button
               color="warn"
               class="delete"
@@ -70,7 +71,12 @@
             >
               Delete
             </button>
-            <button mat-raised-button class="add" (click)="addBlog()">
+            <button
+              type="button"
+              mat-raised-button
+              class="add"
+              (click)="addBlog()"
+            >
               Add
             </button>
           </div>
